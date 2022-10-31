@@ -6,8 +6,31 @@ const cartController = {
     get: async (req: Request, res: Response) => {
         try
         {
-            const allCart = await cartModel.find()
-            res.status(200).send(allCart)
+            const myCart = await cartModel.findOne()
+            if (!myCart) {
+                res.send('El carrito se encuentra vacio')
+            } else {
+
+                let i
+                let totalPrices = 0
+                let price = 0
+
+                let cant = 0
+            
+                const cart = await cartModel.find()
+
+            for (i=0; i < cart.length; i++)
+            {
+                price = cart[i].productPrice
+                cant = cart[i].productAmount
+                totalPrices = totalPrices + (cant*price)
+            }
+
+
+             res.status(200).send(`Su carrito:\n   ${cart}\n  Precio total: ${totalPrices}`)
+
+            }
+            
         }
         catch(error)
         {
