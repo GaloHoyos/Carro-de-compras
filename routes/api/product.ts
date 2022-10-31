@@ -1,12 +1,10 @@
 import express, { Router } from 'express'
+import productController from '../../controllers/product'
 
 const router = Router()
 
-router.get('/', (req:any,res:any) =>{
-    res.send('Aca deberia estar los items')
-})
-router.post('/', (req:any,res:any) =>{
-    res.send('Aca agregamos un item')
-})
+router.get('/', productController.get)
+router.post('/', productController.add)
+router.delete('/', productController.delete)
 
 export default router
