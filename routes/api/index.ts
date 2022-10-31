@@ -1,13 +1,10 @@
 import express, { Router } from 'express'
+import cartRouter from './cart'
+import productRouter from './product'
 
 const router = Router()
 
-router.use('/cart', (req:any,res:any) =>{
-    res.send('Aca deberia estar el carrito')
-})
-router.use('/products', (req:any,res:any) =>{
-    res.send('Aca deberian estar los productos')
-})
-
+router.use('/cart', cartRouter)             //la ruta localhost:3000/api/cart usara cartRouter que fue importado desde ./cart
+router.use('/products', productRouter)      //la ruta localhost:3000/api/products usara productRouter que fue importado desde ./product
 
 export default router
