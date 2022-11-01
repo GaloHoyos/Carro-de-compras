@@ -7,6 +7,6 @@ const cartSchema = new Schema({
     productPrice: {type: Number, required: true}
 })
 
-export default model("Cart", cartSchema)
+export default model("cart", cartSchema)
 
 /* Este es un modelo para como van a ser los productos dentro del carrito de compra */

@@ -6,7 +6,7 @@ const productController = {
     get: async (req: Request, res: Response) => {
         try
         {
-            const allCart = await cartModel.find()
+            const allCart = await productModel.find()
             res.status(200).send(allCart)
         }
         catch(error)
@@ -17,12 +17,12 @@ const productController = {
     add: async (req: Request, res: Response) =>{
         try
         {
-            const isInProducts = await productModel.findOne({productID : req.body.productID})
-            if(!isInProducts){
+            const inProducts = await productModel.findOne({productID : req.body.productID})
+            if(!inProducts){
                 const newProduct = new productModel({...req.body})
                 await newProduct.save()
                 res.send(newProduct)
-            }else if (isInProducts){
+            }else if (inProducts){
                 res.send('Ya existe el producto')
             }
         }
@@ -34,10 +34,10 @@ const productController = {
     delete: async (req: Request, res: Response) => {
         try
         {
-            const isInProducts = await productModel.findOne({productID : req.body.productID})
-            if(!isInProducts){
+            const inProducts = await productModel.findOne({productID : req.body.productID})
+            if(!inProducts){
                 res.send('No existe el producto')
-            }else if (isInProducts){
+            }else if (inProducts){
                 const productoEliminado = await productModel.findOneAndDelete({productID : req.body.productID})
                 res.send('El producto ha sido eliminado')
 

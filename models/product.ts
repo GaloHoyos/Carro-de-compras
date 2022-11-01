@@ -7,6 +7,6 @@ const productSchema = new Schema({
     productStock: {type: Number, required: true}
 })
 
-export default model("Cart", productSchema)
+export default model("product", productSchema)
 
 /* Esto es un modelo para saber como es cada producto fuera del carro de compras */
