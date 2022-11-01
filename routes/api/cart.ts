@@ -9,4 +9,4 @@ router.delete('/', cartController.delete)
 
 export default router
 
-// Utilizamos express para ver que van a hacer get y post
+// Utilizamos express para ver que van a hacer get, post y delete y en que rutas
