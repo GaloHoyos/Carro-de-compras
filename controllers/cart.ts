@@ -10,25 +10,18 @@ const cartController = {
             if (!myCart) {
                 res.send('El carrito se encuentra vacio')
             } else {
-
                 let i
                 let total = 0
                 let subTotal = 0
-
                 let cant = 0
-            
                 const myCart = await cartModel.find()
-
             for (i=0; i < myCart.length; i++)
             {
                 subTotal = myCart[i].productPrice
                 cant = myCart[i].productAmount              //Pasa por la longitud del carro y con un acumulador suma los precios
                 total = total + (cant*subTotal)
             }
-
-
              res.status(200).send(`Su carrito:\n   ${myCart}\n  Precio total: ${total}`)
-
             }
             
         }
@@ -63,7 +56,7 @@ const cartController = {
                     inProducts.save()
                     inCart.productAmount++
                     inCart.save()
-                    res.send(inCart)
+                    res.send(`Se agrego el producto ${inCart.productName} al carrito! Total de ${inCart.productAmount}`)
                 }else if(inProducts.productStock < 1){                      //Si no hay stock del producto
                     res.send('No hay suficiente stock del producto')
                 }
@@ -90,13 +83,13 @@ const cartController = {
                 inProducts.productStock++   //Al eliminarse del carrito el stock aumenta nuevamente
 
                 inProducts.save()
-                res.send('Se elimino el producto del carrito')
+                res.send(`Se elimino el producto ${inCart.productName} del carrito!`)
             } else if (inCart){
                 inCart.productAmount--      
                 inCart.save()
                 inProducts.productStock++   
                 inProducts.save()
-                res.send(inCart)
+                res.send(`Se elimino 1 ${inCart.productName} del carrito! Total de ${inCart.productAmount} restantes en el carrito.`)
 
             }
         }

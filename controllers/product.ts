@@ -21,7 +21,7 @@ const productController = {
             if(!inProducts){
                 const newProduct = new productModel({...req.body})
                 await newProduct.save()
-                res.send(newProduct)
+                res.send(`Nuevo producto agregado al sistema:\n   ${newProduct}`)
             }else if (inProducts){
                 res.send('Ya existe el producto')
             }
